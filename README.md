@@ -24,41 +24,44 @@ To scramble it uncomment lines (43-44, 63-4) or (43, 47, 63-4)
 
 ### Here is an example of what you can expect to see when you run the app
 **If you run it as is, you will get the following image:**
-![Scramble code](https://github.com/user-attachments/assets/bd0377e3-e248-4fb2-aea1-2da56494f0b0)
+![Scramble code](https://github.com/user-attachments/assets/459f508d-3dc1-4654-a358-4a195431ea78)
+
 > **And in terms of pyraminx, here is what you would need to do:**
 
-<img src="https://github.com/user-attachments/assets/4e3934bc-d7bd-4128-946b-42f23a80582a" width="400" height="400">
-<img src="https://github.com/user-attachments/assets/3c8200f8-1035-4fcb-8c4e-774ab22e8d8c" width="400" height="400">
+<img src="https://github.com/user-attachments/assets/f3f078be-73d9-4813-981a-99d9ce1f627c" width="400" height="400">
+<img src="https://github.com/user-attachments/assets/4c9b3c4b-b998-49aa-8c3f-697bb0887a4a" width="400" height="400">
 
 >**Congratulations! You have successfully scrambled a pyraminx!**
 
 **If you wish to solve it, you need to run the following code and follow the console instructions once again:**
-![Solve Code](https://github.com/user-attachments/assets/77208524-2c6d-4e33-823f-8ad55e7963d2)
+![Solve Code](https://github.com/user-attachments/assets/f3f358dc-da3b-4871-a1c2-2649c796601a)
+
 > **And in terms of pyraminx, here is what you need to do:**
 
-<img src="https://github.com/user-attachments/assets/a869d208-f3a7-48ff-846a-743bed658c14" width="400" height="400">
-<img src="https://github.com/user-attachments/assets/a0724f90-c3bd-4218-aa05-b97c35312053" width="400" height="400">
+<img src="https://github.com/user-attachments/assets/09b3eef1-55c3-4e9c-857e-6f3383b89588" width="400" height="400">
+<img src="https://github.com/user-attachments/assets/8ebce793-ed4c-463a-a14e-96b0723834fb" width="400" height="400">
 
 > **Congratulations! You have solved a pyraminx, well-done!**
 
 ### Here is how you can input your own pyraminx:
 The pyraminx has 4 unique sides, in code I call them 0-3, however here I will call them sides 1-4. 
 * Here is the image of sides 1 and 2
-<img src="https://github.com/user-attachments/assets/d69fc6e3-eb54-4cd3-a273-ca436cb9c53f" width="400" height="400">
+
+<img src="https://github.com/user-attachments/assets/8ebce793-ed4c-463a-a14e-96b0723834fb" width="400" height="400">
 
 * Here is the image of sides 2 and 3
-<img src="https://github.com/user-attachments/assets/140da2d3-4635-4d3c-9b7e-37d9f871ae68" width="400" height="400">
+<img src="https://github.com/user-attachments/assets/ec4636d9-cf2a-43a7-aa83-1719362641ee" width="400" height="400">
 
 *Here is the image of sides 1 and 4  
 
-<img src="https://github.com/user-attachments/assets/16994719-3fe6-4d42-a1c5-bd0c24fa1ff4" width="400" height="400">
+<img src="https://github.com/user-attachments/assets/822703a6-6e1e-4c92-8f54-5a27169acbcf" width="400" height="400">
 
 *Confused? Let me explain:
 Each side has 6 cells on each side. The **odd** cells are called <ins>"**Centers**"</ins> and **even** cells are called <ins>**Edges**</ins>.
-![image](https://github.com/user-attachments/assets/80180955-5a10-4a15-ba4a-ffe6b778ef13)
+![image](https://github.com/user-attachments/assets/3c35603a-55f1-47d1-b436-e838f0f1d8a7)
 
 In terms of 4th side, it looks like this in relation to the other sides:  
-![image](https://github.com/user-attachments/assets/cc4947d4-be20-482a-9a29-439d97855438)
+![image](https://github.com/user-attachments/assets/e3e61b28-2895-49c9-bbbe-44aa5423078d)
 
 If you were to take your pyraminx and look at any side's 4th cell you will see that they all connect to the 4th side **edges**.
 
