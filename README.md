@@ -100,3 +100,8 @@ The code has 3 main steps which it is following:
 2) Step (2) - Is using iterative deepening alongside pruning. You expand a node up to 4 moves, if the 2nd moves aren't ideal from the "Solving_For_Bottom_Side" point of view they get removed. After which you try and put them back into solved position while pruning the ones that are not sorted and those that are worse than or equal to their parent.
 3) Step (3) - Using user input to turn the pyraminx in a way that the user has programmed, and either finding a goal state or saying it hasn't been found and here's what the last state looked like: ...
 
+Lastly, you need to create your initial state by using: 
+
+int[][]data = ...
+
+where ... is either one of the states available, generated code that you get from running line 47 or your own input.
