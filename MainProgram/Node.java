@@ -1,27 +1,29 @@
-public class node {
+public class Node {
     //default values.
-    String name_of_node = "none";
-    String parent_of_node = "none";
-    int[][] data_of_node = new int[4][6];
-    int cost_of_node = 0;
+    String nodeName = "none";
+    String nodeParent = "none";
+    int[][] nodeState = new int[4][6];
+    int nodeCost = 0;
 
 
-    node(String name, String parent, int[][]data, int cost){
-        this.name_of_node = name;
-        this.parent_of_node = parent;
-        this.data_of_node = data;
-        this.cost_of_node = cost;
+    Node(String givenName, String parent, int[][]givenNodeState, int givenCost){
+        this.nodeName = givenName;
+        this.nodeParent = parent;
+        this.nodeState = givenNodeState;
+        this.nodeCost = givenCost;
     }
 
 
-    //empty constructor.
-    node(){
+    // Empty constructor. Solved tetraminx
+    Node(){
+        int[][] defaultNodeState = {{0,0,0,0,0,0},{1,1,1,1,1,1},{2,2,2,2,2,2},{3,3,3,3,3,3}};
+        nodeState = defaultNodeState;
     }
 
 
     //used in (calculations) class to get data of node.
-    public int[] getData(int part){
-        return this.data_of_node[part];
+    public int[] getNodeState(int side){
+        return this.nodeState[side];
     }
 
 
@@ -32,14 +34,14 @@ public class node {
     public String toString() {
         String output = "";
         output=
-        "Name: \t"+this.name_of_node+"\n"+
-        "Parent: "+this.parent_of_node+"\n"+
-        "Cost: \t"+this.cost_of_node+"\n"+
-        "Data: \t";
+        "Name: \t"+this.nodeName+"\n"+
+        "Parent: "+this.nodeParent+"\n"+
+        "Cost: \t"+this.nodeCost+"\n"+
+        "State: \t";
 
-        for(int i = 0; i<this.data_of_node.length;i++){
-            for(int j =0;j<this.data_of_node[0].length;j++){
-                output+=this.data_of_node[i][j];
+        for(int i = 0; i<this.nodeState.length;i++){
+            for(int j =0;j<this.nodeState[0].length;j++){
+                output+=this.nodeState[i][j];
             }
             output+="\n\t";
         }output+="\n";
@@ -56,9 +58,9 @@ public class node {
     // @Override
     // public String toString(){
     //     String output = "\n";
-    //     for(int i = 0; i<this.data_of_node.length;i++){
-    //         for(int j =0;j<this.data_of_node[0].length;j++){
-    //             switch (this.data_of_node[i][j]) {
+    //     for(int i = 0; i<this.nodeState.length;i++){
+    //         for(int j =0;j<this.nodeState[0].length;j++){
+    //             switch (this.nodeState[i][j]) {
     //                 case 0:
     //                 output+="R";
     //                 break;
