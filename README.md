@@ -2,25 +2,15 @@
 > [!Note]
 > The only difference between pyraminx and tetraminx is that pyraminx has corner pieces while tetraminx doesn’t. In this repository, I will be referring to tetraminx as pyraminx simply because it is more popular and easier to imagine.
 
-### Background
-This is my attempt to create an AI algorithm that can be used to both scramble and solve the pyraminx puzzle. Usually in order to solve it you would need to use a pathfinding algorithm such as A*, breadth-first search, depth-first search or some other algorithm. However, in my case, I attempted to solve it as a beginner would, which is by following a set of steps that include: matching all centre pieces for each side, sorting one side fully with all edge pieces correctly placed and using a set of moves such as (F, R, U, R’, U’ F’) to finish the puzzle.
-
-Because of the way I designed the algorithm, it had a couple of limitations such as: 
-1)	It didn’t have a standard. What I mean by that is in Step (1) I use A* as when I explore possible nodes, I then sort them and explore the most promising one. In the Step (2) I use a form of iterative deepening where I explore all possible nodes while pruning non-promising nodes in the process. 
-2)	If the algorithm requires more than 4 turns in Step (2) it will fail, which will mean that you have to use something like grubiks to solve the rest of the pyraminx.
-3)	If you give a wrong format and the algorithm isn’t able to find the correct number, the code will stop and print a likely problem such as “The node ran out of possible moves”
-
-On the other hand, the algorithm is able to find you a solution in a reasonable amount of cases and it has been tested on 10,20, 50 and 100 turn scrambles.
+### Instructions on usage:
+1. Download an Integrated Development Environment(IDE) of your choice, such as Visual Studio Code, NetBeans, IntelliJ IDEA, Eclipse IDE or another that can run Java OR set up Java Development Kit(JDK) and run it through the command prompt.
+2. [Git Clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) the repository or download it with buttons **<>Code** -> **Download**.
+3. Open up Main.java file and run.
+* **If you wish to solve** your pyraminx, please remove the "**//**" comment lines(13 - 17), comment lines(24 - 27), and replace the int[][] initialState = ...; line with your pyraminx configuration.
+* If you are unsure how to set your configuration, please look at the drawn examples of how the pyraminx looks like. Start from the top right and rotate clockwise, repeat the same for the other 2 sides, but be careful with the bottom side.
+* **If you wish to scramble** your pyraminx, please remove the "**//**" comment lines(24 - 17), comment lines(13 - 17). On line 6, set the number of turns you wish to try and solve for inside the **scrambler.scramble(_HERE_)**, and run the program.
 
 
-### Here is how you can try it yourself:
-1.	Install Visual Studio Code, NetBeans, IntelliJ IDEA or some other software that can run Java projects.
-2.	Install the extensions in VSC for Java on the left sidebar fifth icon down or press (Ctrl+Shift+X) together
-3.	Copy the files in this GitHub repository, follow this guide [here](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
-4.	Run the main.java or press F5
-Alternatively, uncomment and comment lines of code in main.java if you wish to scramble, unscramble or create a custom problem
-To solve uncomment lines (43-4, 58-9) or (43, 47, 58-59)
-To scramble it uncomment lines (43-44, 63-4) or (43, 47, 63-4)
 
 ### Here is an example of what you can expect to see when you run the app
 **If you run it as is, you will get the following image:**
