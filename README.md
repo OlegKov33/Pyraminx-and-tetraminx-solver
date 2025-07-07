@@ -14,7 +14,7 @@
 
 ### Here is an example of what you can expect to see when you run the app
 **If you run it as is, you will get the following image:**
-![Scramble code](https://github.com/user-attachments/assets/459f508d-3dc1-4654-a358-4a195431ea78)
+![Scramble code](https://github.com/user-attachments/assets/80d7f687-6c5d-449d-be21-f1472d0975b7)
 
 > **And in terms of pyraminx, here is what you would need to do:**
 
@@ -24,7 +24,7 @@
 >**Congratulations! You have successfully scrambled a pyraminx!**
 
 **If you wish to solve it, you need to run the following code and follow the console instructions once again:**
-![Solve Code](https://github.com/user-attachments/assets/f3f358dc-da3b-4871-a1c2-2649c796601a)
+![Solve Code](https://github.com/user-attachments/assets/b0a4af92-bd63-4e11-8f2e-ad54b93da718)
 
 > **And in terms of pyraminx, here is what you need to do:**
 
@@ -53,7 +53,7 @@ Each side has 6 cells on each side. The **odd** cells are called <ins>"**Centers
 In terms of 4th side, it looks like this in relation to the other sides:  
 ![image](https://github.com/user-attachments/assets/e3e61b28-2895-49c9-bbbe-44aa5423078d)
 
-If you were to take your pyraminx and look at any side's 4th cell you will see that they all connect to the 4th side **edges**.
+If you were to take your pyraminx and look at any side's 4th cell you would see that they all connect to the 4th side **edges**.
 
 If you wish to upload your own scramble, you need to upload it correctly, in the shown case:
 * My side 1 would: correspond to the number 0
@@ -63,35 +63,63 @@ If you wish to upload your own scramble, you need to upload it correctly, in the
 
 If you upload it incorrectly and try and run it, you will get an error saying:
 > [!CAUTION]
-> Your initial state cannot match the goal states centers, please change your initial state and try again.
+> The inputs are not solvable.
 
-However, there are other error messages such as:
+However, there also another error messages:
 
 > [!CAUTION]
-> The goal was not found, the latest node was:
-> and
-> The node ran out of possible moves
+> The goal was not found, please check your inputs again.
 
-* In the first message, your uploaded state was in the wrong format for the code to solve perhaps instead of giving (0...,1...,2...,3...) you gave(0...,2...,3...,1...)
-* In the second message the algorithm was able to solve the bottom side but was unable to further solve the puzzle.
-* In the third message the algorithm was unable a solution with 4 move scramble.
+* In the first message, the algorithm was not able to start because the inputs you gave mismatched. E.g. 5 greens, 1 red, 9 yellow and 9 blue, which is not possible to solve.
+* In the second message, your uploaded inputs weren't properly set.
 
 
-### 3 Steps
-The code has 3 main steps which it is following:
-1) Step (1) - Match all the **centre** pieces on all sides
-2) Step (2) - Solve the bottom layer using 4 moves that the "Solving_For_Bottom_Side" method creates.
-> [!NOTE]
-> When you are asking my code to generate all possible states that it can be from a given state, you are looking at 8 possibilities, if you are asking for 4 moves, you are doing this equation: 8^4 = 4096 moves that will be generated and if you want to generate 6, you are looking at 262144 moves...
-3) Step (3) - The algorithm will use one of its "possible_collection_of_moves" to try and get to the goal state, which if it does you will get a full path from your initial state to your goal state.
+### Developer's notes
+After managing to create a fully functional A* pathfinding algorithm, I wanted to make it faster and optimal, but unfortunately, I wasn't able to come up with anything better. Despite my **compareTo** method being able to solve the problem unlike my first attempt, it still wasn't optimal and therefore, after asking DeepSeek about it, I gained 2 versions. The first version was optimal and more efficient than my code but the second option was also optimal but more efficient than the first... at least at first glance. When tested, between 2 DeepSeeks models, the first one was far more reliable because after running 5 different tests it was able to stay consistent and optimal:
 
-### In terms of algorithms 
-1) Step (1) - Is using A* as it focuses on getting the best node, and tries exploring it as well as sorting the array in case that node isn't efficient.
-2) Step (2) - Is using iterative deepening alongside pruning. You expand a node up to 4 moves, if the 2nd moves aren't ideal from the "Solving_For_Bottom_Side" point of view they get removed. After which you try and put them back into solved position while pruning the ones that are not sorted and those that are worse than or equal to their parent.
-3) Step (3) - Using user input to turn the pyraminx in a way that the user has programmed, and either finding a goal state or saying it hasn't been found and here's what the last state looked like: ...
+**(Cost - number of turns until goal state), (Counter - number of while loop iterations), (Unexplored List - number of nodes generated)**
 
-Lastly, you need to create your initial state by using: 
+**deep v2**
 
-int[][]data = ...
 
-where ... is either one of the states available, generated code that you get from running line 47 or your own input.
+Cost - 12, counter - 85699, unexplored list - 455265
+
+Cost - 2, counter - 4, unexplored list - 26
+
+Cost - 4, counter - 31171, unexplored list - 169962
+
+Cost - 7, counter - 3646, unexplored list - 19390
+
+Cost - 13, counter - 51742, unexplored list - 279379
+
+
+**deep v1**
+
+
+Cost - 4, counter - 3572, unexplored list - 19853
+
+Cost - 2, counter - 4, unexplored list - 26
+
+Cost - 4, counter - 474, unexplored list - 2605
+
+Cost - 7, counter - 10742, unexplored list - 58784
+
+Cost - 10, counter - 209110, unexplored list - 1027022
+
+
+**my method**
+
+
+Cost - 4, counter - 175, unexplored list - 993
+
+Cost - 3, counter - 8, unexplored list - 48
+
+Cost - 4, counter - 28, unexplored list - 163
+
+Cost - 8, counter - 57861, unexplored list - 304817
+
+Cost - 10, counter - 56958, unexplored list - 300945
+
+*
+Lastly, my method had the following unexpected error, where the program thinks it needs 2 turns to solve the problem, when really it requires only 1 turn. I am unsure how it occurred or why, but when tested with DeepSeeks V1, the error didn't appear.
+![image](https://github.com/user-attachments/assets/407ce7f3-c0d0-4860-87fd-691f6a90e29e)
