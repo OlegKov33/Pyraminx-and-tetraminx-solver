@@ -1,5 +1,6 @@
 # Pyraminx-and-tetraminx-solver
 A simple program used to solve and scramble tetraminx and pyraminx puzzles
+
 > [!Note]
 > The only difference between pyraminx and tetraminx is that pyraminx has corner pieces while tetraminx doesn’t. In this repository, I will be referring to tetraminx as pyraminx simply because it is more popular and easier to imagine.
 
