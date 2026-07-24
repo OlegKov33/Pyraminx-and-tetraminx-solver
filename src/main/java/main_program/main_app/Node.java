@@ -125,7 +125,17 @@ public class Node implements Comparable<Node>{
     return Integer.compare(inputCorrectlyAlignedCells, correctlyAlignedCells);
     }
 
-
+    @Override
+    public String toString(){
+        StringBuilder builder = new StringBuilder();
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 6; j++){
+                builder.append(state[i][j]);
+            }
+            builder.append(" ");
+        }
+        return builder.toString();
+    }
 
     // //DEEPSEEKS COMPARETO version. MUST BE USED WITH HEURISTIC V1 or HEURISTIC V2 below!
     

@@ -5,6 +5,7 @@ package main_program.utils;
 import main_program.main_app.Node;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Scrambler {
@@ -23,8 +24,8 @@ public class Scrambler {
     public int[][] scramble(int turnsNumber){
 
         Rotator turnRotator = new Rotator(innerNode);
-        int[][] result = nodeState;
         List<int[][]> stateList = new ArrayList<>(turnsNumber+1);
+        int[][] result = innerNode.getNodeState();
         stateList.add(result);
 
         for (int i = 0; i < turnsNumber; i++){

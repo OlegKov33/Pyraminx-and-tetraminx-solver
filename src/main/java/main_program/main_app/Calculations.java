@@ -39,7 +39,6 @@ public class Calculations {
 
         // checks if the input is valid by counting numbers
         if (!isSolvable()) {
-            System.out.println("The inputs are not solvable.");
             return null;
         }
 
