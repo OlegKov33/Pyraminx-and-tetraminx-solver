@@ -1,15 +1,17 @@
+package main_program.main_app;
+
 public class Node implements Comparable<Node>{
-    private int[][] state;
-    private int cost;
-    private int[][] goalState;
+    private final int[][] state;
+    private final int[][] goalState;
+    private final int cost;
     private String name;
     private String parent;
 
 
     public Node(){
         state = new int[][]{{0, 0, 0, 0, 0, 0},{1, 1, 1, 1, 1, 1},{2, 2, 2, 2, 2, 2},{3, 3, 3, 3, 3, 3}};
-        cost = 0;
         goalState = new int[][]{{0, 0, 0, 0, 0, 0},{1, 1, 1, 1, 1, 1},{2, 2, 2, 2, 2, 2},{3, 3, 3, 3, 3, 3}};
+        cost = 0;
     }
 
 
@@ -42,15 +44,15 @@ public class Node implements Comparable<Node>{
         return true;
     }
     
-    // used in similar way as toString. However, its used for naming nodes and in path finding
+    // used in similar way as toString. However, it's used for naming nodes and in path finding
     public String printNode(){
-        String output = "";
+        StringBuilder output = new StringBuilder();
         for(int i = 0; i < 4; i++){
             for(int j = 0; j < 6; j++){
-                output += state[i][j];
+                output.append( state[i][j] );
             }
         }
-        return output;
+        return output.toString();
     }
 
 
@@ -71,14 +73,14 @@ public class Node implements Comparable<Node>{
     }
 
     public String getName(){
-        return this.name;
+        return name;
     }
     
     public String getParent(){
-        return this.parent;
+        return parent;
     }
 
-    // MY COMPARETO version. Does not guarantee an optimal solution.
+    // MY COMPARE-TO version. Does not guarantee an optimal solution.
     @Override
     public int compareTo(Node inputNode) {
         int correctlyAlignedCells = 0;
@@ -128,7 +130,7 @@ public class Node implements Comparable<Node>{
     // //DEEPSEEKS COMPARETO version. MUST BE USED WITH HEURISTIC V1 or HEURISTIC V2 below!
     
     // @Override
-    // public int compareTo(Node o) {
+    // public int compareTo(main_app.Node o) {
     //     // Manhattan distance heuristic (sum of all facelet mismatches)
     //     int thisHeuristic = this.cost + this.calculateHeuristic();
     //     int otherHeuristic = o.cost + o.calculateHeuristic();
