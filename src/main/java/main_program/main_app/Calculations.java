@@ -1,78 +1,82 @@
 package main_program.main_app;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Set;
+
 import main_program.utils.Rotator;
 
-import java.util.*;
-
 public class Calculations {
-    // take input, take output
-    // check if input variables match output variables in terms of data numbers 1:1
-    // take first node and add it to the queue
-    // start looping through queue exploring nodes that are:
-    // a) not been explored before
-    // b) seem to be the most closely to the end
-    // before exploring nodes, check if the one you are about to explore matches the goal
     private final Node startingNode;
-    private final Node finishingNode;
     private final Queue<Node> unexploredNodes = new PriorityQueue<>();
     private final Set<String> exploredStates = new HashSet<>();
     private final Map<String, Node> pathNodes = new HashMap<>();
     private boolean notFoundGoal = true;
 
-    public Calculations(Node inputStartingNode,
-                        Node inputFinishingNode) {
+    public Calculations(Node inputStartingNode) {
 
         startingNode = inputStartingNode;
-        finishingNode = inputFinishingNode;
         unexploredNodes.add(startingNode);
     }
 
-    //TODO change this method to return a list of states till the end
     public List<Node> start() {
 
         // checks if the input is equal to the goal
-        if (startingNode.printNode().equals(finishingNode.printNode())) {
+        if (startingNode.getNodeState() == startingNode.getGoalState()) {
             System.out.println("The input is equal to the goal!");
             return null;
         }
 
         // checks if the input is valid by counting numbers
         if (!isSolvable()) {
+            System.out.println("Not solvable");
             return null;
         }
 
         while (notFoundGoal) {
             if (unexploredNodes.isEmpty()) {
+                System.out.println("Unexplored nodes are empty");
                 return null;
             }
+
+            Node node = unexploredNodes.poll();
+
             // adds a node to a list if visited nodes, used to determine if the node was explored already
-            exploredStates.add(unexploredNodes.peek().printNode());
+            exploredStates.add(node.printNode());
 
             // adds a node to a hash list, but unlike the list above, will be used for path construction later
-            pathNodes.put(unexploredNodes.peek().getName(), unexploredNodes.peek());
+            pathNodes.put(node.getName(), node);
 
             // removes and explores the most promising node according to compareTo method in main_app.Node.java class
-            unexploredNodes.addAll(exploringNode(unexploredNodes.poll()));
+            unexploredNodes.addAll(exploringNode(node));
 
 
-            // If the node equals to the goal, tell the user 
-            if (unexploredNodes.peek().printNode().equals(finishingNode.printNode())) {
+            // If the node equals to the goal, tell the user
+            if (Arrays.deepEquals( node.getNodeState(),startingNode.getGoalState())) {
                 System.out.println("Goal found!\nCost of node : " + unexploredNodes.peek().getCost()
                         + "\nTotal nodes explored: " + exploredStates.size() + "\nGenerated nodes: " + unexploredNodes.size() + "\n");
                 pathNodes.put(unexploredNodes.peek().getName(), unexploredNodes.peek());
 
-                return constructPath(unexploredNodes.peek());
+                return constructPath(node);
 
             }
             //if you didn't find the goal within 23,000 nodes, there is a problem.
-            if (exploredStates.size() > 23000) {
+            if (exploredStates.size() > 500_000) {
                 notFoundGoal = false;
+                System.out.println("REALLY?! " + exploredStates.size());
                 System.out.println("The goal was not found, please check your inputs again.");
                 return null;
             }
         }
 
+        System.out.println("i am here?!");
         return null;
     }
 
@@ -81,7 +85,7 @@ public class Calculations {
     public Queue<Node> exploringNode(Node givenNode) {
 
         Queue<Node> returnList = new PriorityQueue<>();
-        Rotator stateRotator = new Rotator(givenNode);
+        Rotator stateRotator = new Rotator();
         List<int[][]> listOfNewStates = stateRotator.rotateAll(givenNode);
 
         for (int[][] state : listOfNewStates) {
@@ -127,15 +131,16 @@ public class Calculations {
 
             for (int side = 0; side < 4; side++) {
                 for (int edgeOrBase = 0; edgeOrBase < 3; edgeOrBase++) {
-                    if (finishingNode.getNodeState()[side][edgeOrBase * 2] == colourNumber) {
+                    if (startingNode.getGoalState()[side][edgeOrBase * 2] == colourNumber) {
                         numberOfEdges--;
                     }
-                    if (finishingNode.getNodeState()[side][edgeOrBase * 2 + 1] == colourNumber) {
+                    if (startingNode.getGoalState()[side][edgeOrBase * 2 + 1] == colourNumber) {
                         numberOfBases--;
                     }
                 }
             }
             if (numberOfBases != 0 || numberOfEdges != 0) {
+                System.out.println("I am here?" + numberOfBases + " "+ numberOfEdges);
                 return false;
             }
         }

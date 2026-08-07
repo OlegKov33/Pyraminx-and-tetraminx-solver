@@ -2,11 +2,10 @@ package main_program.utils;
 //This class generates a new node using an input as its starting point.
 
 
-import main_program.main_app.Node;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import main_program.main_app.Node;
 
 public class Scrambler {
     private final int[][]nodeState = new int[4][6];
@@ -23,7 +22,7 @@ public class Scrambler {
     // scrambles by turnsNumber times
     public int[][] scramble(int turnsNumber){
 
-        Rotator turnRotator = new Rotator(innerNode);
+        Rotator turnRotator = new Rotator();
         List<int[][]> stateList = new ArrayList<>(turnsNumber+1);
         int[][] result = innerNode.getNodeState();
         stateList.add(result);
