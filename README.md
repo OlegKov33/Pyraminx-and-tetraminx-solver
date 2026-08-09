@@ -1,4 +1,7 @@
 # Pyraminx-and-tetraminx-solver
+
+[Link to new version](https://github.com/OlegKov33/Tetraminx-solver)
+
 A simple program used to solve and scramble tetraminx and pyraminx puzzles
 
 > [!Note]
